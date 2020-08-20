@@ -1,4 +1,35 @@
-<hello name="{{ name }}"></hello>
-<p>
-  Start editing to see some magic happen :)
-</p>
+<div>
+
+  <p *ngIf="verifyAllInscritos()">
+    TODOS ESTAN INSCRITOS
+  </p>
+
+  <p>ESTUDIANTES</p>
+  <p>Total Inscritos: {{inscritos}}</p>
+
+	<p>PRIMARIA TOTAL:{{students.primaria.length}}</p>
+
+	<div style="display: flex; flexDirection: row;">
+		<div *ngFor="let student of students.primaria">
+			<estudiante
+       [nombre]="student.nombre"
+       [edad]="student.edad"
+       [grado]="student.grado"
+       (inscribir)="inscribir(student, 'primaria')">
+			</estudiante>
+		</div>
+	</div>
+
+	<p>SECUNDARIA TOTAL: {{students.secundaria.length}}</p>
+	<div style="display: flex; flexDirection: row;">
+		<div *ngFor="let student of students.secundaria">
+			<estudiante
+       [nombre]="student.nombre"
+       [edad]="student.edad"
+       [grado]="student.grado"
+       (inscribir)="inscribir(student, 'secundaria')">
+			</estudiante>
+		</div>
+	</div>
+
+</div>
